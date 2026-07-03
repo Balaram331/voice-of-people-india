@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Brain Battle ⚡</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo (2).png">
+<link rel="stylesheet" href="game.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Brain Battle ⚡</h1>
+  <p>Think fast or lose 😈</p>
+
+  <!-- MODE -->
+  <div id="modeScreen">
+    <button onclick="startSolo()">Play Solo ⚡</button>
+    <button onclick="comingSoon()">Battle Friends 🔥</button>
+  </div>
+
+  <!-- BATTLE -->
+  <div id="battleScreen" class="hidden">
+
+    <h2>Battle Room 😈</h2>
+
+    <button onclick="createRoom()">Create Room</button>
+
+    <p id="roomLink"></p>
+    <button onclick="copyLink()">Copy Link 🔗</button>
+
+    <input id="roomInput" placeholder="Enter Room Code">
+    <button onclick="joinRoom()">Join Room</button>
+
+    <p id="playersList"></p>
+
+    <button onclick="startBattle()">Start Game 🚀</button>
+
+  </div>
+
+  <!-- GAME -->
+  <div id="gameScreen" class="hidden">
+    <h2 id="timer"></h2>
+    <h3 id="score"></h3>
+
+    <h3 id="question"></h3>
+    <div id="options"></div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="resultScreen" class="hidden">
+    <h2 id="finalScore"></h2>
+    <button onclick="location.reload()">Play Again</button>
+  </div>
+
+</div>
+
+<!--  FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+   apiKey: "AIzaSyATv5FETFolVbuaMEn7vNJkRq11zLe6RTA",
+   authDomain: "game-ee4d3.firebaseapp.com",
+   projectId: "game-ee4d3",
+   storageBucket: "game-ee4d3.firebasestorage.app",
+   messagingSenderId: "916006094283",
+   appId: "1:916006094283:web:84291a737be763c980a24e",
+   measurementId: "G-BPKQ0F46H4"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
+
+<script src="questions.js"></script>
+<script src="game.js"></script>
+
+</body>
+</html>

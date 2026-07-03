@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics Services | Voice of People India</title>
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HEADER (same as index) -->
+<header>
+  <div class="logo">
+    <img src="images/logo.png">
+    <span>Voice of People <span class="gradient">India</span></span>
+  </div>
+
+  <nav id="nav">
+    <a href="index.html">Home</a>
+    <a href="services.html" class="premium-link">Analytics Service</a>
+    <a href="index.html#OurMission">Our Mission</a>
+    <a href="index.html#issues">Issues</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+
+  <div class="menu" onclick="toggleMenu()">☰</div>
+</header>
+
+<!-- HERO -->
+<div class="service-header">
+  <h1>Data Analytics Services</h1>
+  <p>
+    We provide services to businesses & organizations with the tools and insights to understand data and make smarter decisions.
+  </p>
+</div>
+
+<!-- SERVICES -->
+<section class="section">
+
+  <h2 class="big-text">Our <span class="gradient">Services</span></h2>
+
+  <div class="cards">
+
+    <!-- BASIC -->
+    <div class="card service-box">
+  <div class="card-content">
+    <h3> Data Analysis & Reporting</h3>
+    <ul>
+      <li>Excel, CSV Data Analysis</li>
+      <li>Dashboard (Power BI / Tableau) </li>
+      <li>Data Cleaning & Processing</li>
+      <li>Report (PDF / PPT)</li>
+    </ul>
+  </div>
+</div>
+
+    <!-- POLITICAL -->
+    <div class="card service-box">
+ <div class="card-content"></div>
+    <h3> Political & Government</h3>
+      <ul>
+        <li>Public Opinion Analysis </li>
+        <li>Election Data Analysis</li>
+        <li>Region-wise Issue Tracking</li>
+      </ul>
+    </div>
+
+    <!-- BUSINESS -->
+     <div class="card service-box">
+ <div class="card-content"></div>
+    <h3>Business Analytics</h3>
+      <ul>
+        <li>Sales & Revenue Analysis </li>
+        <li>Customer Behavior Insights</li>
+        <li>Growth & Strategy Planning </li>
+        <li>Market Research & Trends</li>
+        <li>KPI Dashboard</li>
+      </ul>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+
+  <h2 class="big-text">How It <span class="gradient">Works</span></h2>
+
+  <div class="steps">
+
+  <div class="step-box" onclick="goToContact()">
+    <span>📩</span>
+    <p>Contact</p>
+  </div>
+
+  <div class="step-box" onclick="goToContact()">
+    <span>📂</span>
+    <p>Share Data</p>
+  </div>
+
+  <div class="step-box" onclick="goToContact()">
+    <span>📊</span>
+    <p>Analysis</p>
+  </div>
+
+  <div class="step-box" onclick="goToContact()">
+    <span>📄</span>
+    <p>Report</p>
+  </div>
+
+</div>
+
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+
+  <div class="contact-form">
+
+  <h2>Contact <span>Us</span></h2>
+
+  <!-- BASIC -->
+  <label for="company">Company Name *</label>
+<input id="company" type="text" placeholder="Company Name" autocomplete="organization">
+  <label for="email">Email Address *</label>
+  <input type="email" id="email" placeholder="Email Address">
+
+  <!-- NEW  -->
+  <label>Industry / Company Type*</label>
+  <input type="text" id="industry"  placeholder="Industry / Company Type">
+  <label>Service of Interest * </label>
+  <select id="service">
+  <option>Select Service </option>
+  <option>Data Analysis & Reporting</option>
+  <option>Business Analytics</option>
+  <option>Political Analysis</option>
+  <option>Custom Data Solution</option>
+</select>
+<label>Company Size </label>
+  <select id="companySize">
+    <option>Company Size</option>
+    <option>1-10 Employees</option>
+    <option>10-50 Employees</option>
+    <option>50+ Employees</option>
+  </select>
+<label>Monthly Budget (Optional)</label>
+  <input type="text" id="monthlyBudget" placeholder="Monthly Budget (Optional)">
+
+  <!-- IMPORTANT -->
+   <label>Describe Your Requirement *</label>
+  <textarea id="requirement" placeholder="Describe your requirement"></textarea>
+
+  <!-- HISTORY -->
+   <label>Company / Past Work (Optional)</label>
+  <textarea id="past" placeholder="Tell us about your company / past work (optional)"></textarea>
+
+  <button onclick="submitAnalysis()">Submit Request</button>
+
+</div>
+
+
+<!--ai chat button-->
+
+
+<div id="ai-container"></div>
+
+<script>
+fetch("ai-component.html")
+.then(res => res.text())
+.then(data => {
+  document.getElementById("ai-container").innerHTML = data;
+});
+</script>
+<script src="ai-data.js"></script>
+<script src="ai.js"></script>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 AITTS | All rights reserved.
+</footer>
+
+<!-- MENU SCRIPT -->
+<script>
+function toggleMenu(){
+  document.getElementById("nav").classList.toggle("show");
+}
+</script>
+<script>
+function goToContact() {
+  document.getElementById("contact").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyB1oBP-i4iNccXk_pfx5z6vLhE11muHhC8",
+    authDomain: "voice-of-people-india.firebaseapp.com",
+    projectId: "voice-of-people-india",
+    storageBucket: "voice-of-people-india.firebasestorage.app",
+    messagingSenderId: "664755774383",
+    appId: "1:664755774383:web:fcf3653b3d09a7c0aa455a",
+    measurementId: "G-PK6XN09BB5"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>   
+<script>
+function submitAnalysis(){
+
+  let company = document.getElementById("company").value;
+  let email = document.getElementById("email").value;
+  let industry = document.getElementById("industry").value;
+  let service = document.getElementById("service").value;
+  let size = document.getElementById("companySize").value;
+  let budget = document.getElementById("monthlyBudget").value;
+  let requirement = document.getElementById("requirement").value;
+  let past = document.getElementById("past").value;
+
+  if(!company || !email || !requirement){
+    alert("Fill required fields");
+    return;
+  }
+
+  db.collection("analysisRequests").add({
+    company,
+    email,
+    industry,
+    service,
+    size,
+    budget,
+    requirement,
+    past,
+    createdAt: new Date()
+  })
+  .then(() => {
+    alert("Request sent successfully 📊");
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Error");
+  });
+}
+</script>
+
+
+</body>
+</html>

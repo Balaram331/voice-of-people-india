@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Games 🎮</title>
+<link rel="icon" type="image/png" href="logo (2).png">
+<link rel="stylesheet" href="games.css">
+</head>
+
+<body>
+
+<div class="header">
+  <p id="playerName">Hi</p>
+  <h1>Best Games 🎮</h1>
+</div>
+
+
+<div class="tabs">
+  <button onclick="goSlide(0)" class="active">🔥 Popular</button>
+  <button onclick="goSlide(1)">⚡ New</button>
+  <button onclick="goSlide(2)">💎 Recommended</button>
+</div>
+
+
+<!-- SLIDER -->
+<div class="slider">
+
+  <!-- GAME 1 -->
+  <div class="slide">
+
+    <div class="game-card">
+      <img src="images/brain.png">
+    </div>
+
+    <!-- 🔥 BUTTON BELOW IMAGE -->
+    <a href="brain-battle/game.html" class="play-btn">Play Now →</a>
+
+    <h2>Brain Battle</h2>
+    <p>Think fast or lose 😈</p>
+
+  </div>
+
+  <!-- GAME 2 -->
+  <div class="slide">
+
+    <div class="game-card">
+      <img src="images/rizz.png">
+    </div>
+
+    <a href="rizz-tapper/rizz.html" class="play-btn">Play Now →</a>
+
+    <h2>Rizz Tapper</h2>
+    <p>Tap fast, go crazy 😵‍💫</p>
+
+  </div>
+
+  <!-- GAME 3 -->
+  <div class="slide">
+
+    <div class="game-card">
+      <img src="images/vote.png">
+    </div>
+
+    <a href="vote-zone/index.html" class="play-btn">Play Now →</a>
+
+    <h2>Vote Zone</h2>
+    <p>Your opinion matters 💬</p>
+
+  </div>
+
+</div>
+
+<!-- DOTS -->
+<div class="dots">
+  <span class="active"></span>
+  <span></span>
+  <span></span>
+</div>
+<script src="games.js"></script>
+</body>
+</html>

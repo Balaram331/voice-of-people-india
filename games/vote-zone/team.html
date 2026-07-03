@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teams</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- TOP -->
+<div class="top">
+  <h2>Teams</h2>
+  <button class="back-btn" onclick="goHome()">← Back</button>
+</div>
+
+<!-- ALL TEAMS -->
+<div class="team-list">
+  <h3>All Teams</h3>
+  <div id="teams"></div>
+</div>
+
+<!-- NOT IN TEAM -->
+<div id="noTeam" class="create-team">
+
+  <h3>Create Team</h3>
+
+  <input id="teamName" placeholder="Team name">
+  <input id="ideology" placeholder="Idea">
+  <input id="password" placeholder="Password">
+
+  <button onclick="createTeam()">Create</button>
+
+  <h3>Join Team</h3>
+
+  <input id="joinCode" placeholder="Code">
+  <input id="joinPass" placeholder="Password">
+
+  <button onclick="joinTeam()">Join</button>
+
+</div>
+
+<!-- IN TEAM -->
+<div id="inTeam" class="create-team hidden">
+
+  <h3>Your Team</h3>
+
+  <!-- MEMBERS -->
+  <div id="members"></div>
+
+  <!-- START GAME -->
+  <div id="startGame"></div>
+
+  <!-- PM -->
+  <h3>Select PM 👑</h3>
+  <div id="pmVote"></div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+<script src="firebase.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

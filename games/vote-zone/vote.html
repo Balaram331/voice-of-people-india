@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vote Game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="top">
+  <h2>Vote Game 🗳</h2>
+</div>
+
+<div class="vote-section">
+
+  <h3>Team Members</h3>
+  <div id="members"></div>
+
+  <h3>Vote for PM 👑</h3>
+  <div id="voteArea"></div>
+
+  <h3>Results 📊</h3>
+  <div id="results"></div>
+
+</div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+<script src="firebase.js"></script>
+
+<!-- 🔥 MAIN LOGIC -->
+<script>
+
+let user = JSON.parse(localStorage.getItem("user")) || null;
+
+// 🔥 TEAM ID FROM URL
+const urlParams = new URLSearchParams(window.location.search);
+const teamId = urlParams.get("team");
+
+if(!teamId){
+  alert("No team found!");
+}
+
+// ================= GLOBAL CHECK =================
+
+let isGlobalActive = false;
+
+db.collection("globalBattle").doc("battle1").onSnapshot(doc=>{
+
+  let b = doc.data();
+
+  if(!b || !b.active){
+    isGlobalActive = false;
+    return;
+  }
+
+  isGlobalActive = true;
+
+  // 🔥 GLOBAL UI
+  document.getElementById("members").innerHTML = "<h3>🌍 Global Battle</h3>";
+  document.getElementById("voteArea").innerHTML = "";
+  document.getElementById("results").innerHTML = "";
+
+  // TIMER
+  let timeLeft = Math.max(0, Math.floor((b.endTime - Date.now())/1000));
+  document.getElementById("members").innerHTML += `<p>⏱ ${timeLeft}s left</p>`;
+
+  // VOTE BUTTONS
+  let html = "";
+  let voted = b.voters || [];
+
+  b.candidates.forEach(c=>{
+    if(voted.includes(user.id)){
+      html += `<button disabled style="opacity:0.5">✔ Voted</button>`;
+    } else {
+      html += `<button onclick="voteGlobal('${c.name}')">Vote ${c.name}</button>`;
+    }
+  });
+
+  document.getElementById("voteArea").innerHTML = html;
+
+  // RESULTS
+  let res = "";
+  let winner = "";
+  let max = 0;
+
+  b.candidates.forEach(c=>{
+    let v = b.votes?.[c.name] || 0;
+    if(v > max){
+      max = v;
+      winner = c.name;
+   }
+  });
+
+  b.candidates.forEach(c=>{
+    let v = b.votes?.[c.name] || 0;
+    let isW = c === winner;
+
+    res += `<div class="card ${isW?'my-team':''}">
+      ${isW?'👑 ':''}${c.name} - ${v}
+    </div>`;
+  });
+
+  document.getElementById("results").innerHTML = res + `<h2>Winner: ${winner}</h2>`;
+
+  // 🔥 SAFE END
+  if(timeLeft === 0 && b.active){
+    endGlobalBattle();
+  }
+
+});
+
+// ================= TEAM SYSTEM =================
+
+db.collection("teams").doc(teamId).onSnapshot(doc=>{
+
+  if(isGlobalActive) return; // 🔥 prevent conflict
+
+  let t = doc.data();
+  if(!t) return;
+
+  let votes = t.votes || {};
+
+  // MEMBERS
+  let membersHTML = "";
+  t.members.forEach(m=>{
+    membersHTML += `
+  <div class="card">
+    <h3>${m.name}</h3>
+    <p>${t.ideology || "No idea"}</p>
+  </div>
+`;
+  });
+  document.getElementById("members").innerHTML = membersHTML;
+
+  // VOTE BUTTONS
+  let voteHTML = "";
+  let votedUsers = t.votedUsers || [];
+
+  t.members.forEach(m=>{
+    if(votedUsers.includes(user.id)){
+      voteHTML += `<button disabled style="opacity:0.5">✔ Voted</button>`;
+    } else {
+      voteHTML += `<button onclick="vote('${m.name}')">Vote ${m.name}</button>`;
+    }
+  });
+
+  document.getElementById("voteArea").innerHTML = voteHTML;
+
+  // RESULTS
+  let resultHTML = "";
+  let winner = "";
+  let max = 0;
+
+  t.members.forEach(m=>{
+    let count = votes[m.name] || 0;
+    if(count > max){
+      max = count;
+      winner = m.name;
+    }
+  });
+
+  // 🔥 SAVE PM
+  if(winner && !t.pm){
+
+  db.collection("teams").doc(teamId).update({
+    pm: {
+  name: winner,
+  idea: t.ideology
+}
+  }).then(()=>{
+
+    // 🔥 GLOBAL START TRIGGER
+
+    db.collection("teams").get().then(snap=>{
+
+      let pmList = [];
+
+      snap.forEach(d=>{
+        let data = d.data();
+        if(data.pm){
+          pmList.push(data.pm);
+        }
+      });
+
+      console.log("PM COUNT:", pmList.length);
+
+      if(pmList.length >= 2){
+
+        db.collection("globalBattle").doc("battle1").get().then(doc=>{
+
+          let b = doc.data();
+
+          if(!doc.exists || !b?.active){
+
+            db.collection("globalBattle").doc("battle1").set({
+              candidates: pmList,
+              votes: {},
+              voters: [],
+              endTime: Date.now() + 30000,
+              active: true
+            });
+
+            console.log("🔥 GLOBAL STARTED");
+
+          }
+
+        });
+
+      }
+
+    });
+
+  });
+
+}
+
+  t.members.forEach(m=>{
+    let count = votes[m.name] || 0;
+    let isWinner = (m.name === winner);
+
+    resultHTML += `
+      <div class="card ${isWinner ? 'my-team' : ''}">
+        ${isWinner ? "👑 " : ""}${m.name} - ${count} votes
+      </div>
+    `;
+  });
+
+  document.getElementById("results").innerHTML = resultHTML + `<h2>Winner: ${winner}</h2>`;
+
+});
+
+// ================= FUNCTIONS =================
+
+function vote(name){
+
+  if(!user) return alert("Login first");
+
+  db.collection("teams").doc(teamId).get().then(doc=>{
+
+    let t = doc.data();
+    let votedUsers = t.votedUsers || [];
+
+    if(votedUsers.includes(user.id)){
+      return alert("Already voted!");
+    }
+
+    db.collection("teams").doc(teamId).update({
+      ["votes."+name]: firebase.firestore.FieldValue.increment(1),
+      votedUsers: firebase.firestore.FieldValue.arrayUnion(user.id)
+    });
+
+  });
+
+}
+
+function voteGlobal(name){
+
+  db.collection("globalBattle").doc("battle1").get().then(doc=>{
+
+    let b = doc.data();
+
+    if((b.voters || []).includes(user.id)){
+      return alert("Already voted!");
+    }
+
+    db.collection("globalBattle").doc("battle1").update({
+      ["votes."+name]: firebase.firestore.FieldValue.increment(1),
+      voters: firebase.firestore.FieldValue.arrayUnion(user.id)
+    });
+
+  });
+
+}
+
+function endGlobalBattle(){
+
+  db.collection("globalBattle").doc("battle1").update({
+    active: false
+  });
+
+  // 🔥 RESET TEAMS
+  db.collection("teams").get().then(snap=>{
+
+    snap.forEach(d=>{
+
+      db.collection("teams").doc(d.id).update({
+        pm: firebase.firestore.FieldValue.delete(),
+        votes: {},
+        votedUsers: [],
+        gameStarted: false
+      });
+
+    });
+
+  });
+
+  // 🔥 BACK TO TEAM PAGE
+  setTimeout(()=>{
+    window.location.href = "team.html";
+  }, 2000);
+
+}
+
+</script>
+
+
+</body>
+</html>

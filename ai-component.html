@@ -1,0 +1,42 @@
+<!-- AI BUTTON -->
+<div class="ai-float-btn" onclick="openAI()">🤖 VPI AI</div>
+
+<!-- AI POPUP -->
+<div class="ai-popup" id="aiPopup">
+
+  <div class="ai-chat" id="aiBox">
+
+    <!-- HEADER -->
+    <div class="ai-header">
+      <span>VPI AI</span>
+
+      <div class="ai-controls">
+        <button onclick="toggleSize()">▢</button>
+        <button onclick="closeAI()">✖</button>
+      </div>
+    </div>
+
+    <!-- CHAT AREA -->
+    <div id="chatBox" class="chat-box">
+      <div class="bot-msg">
+Hey 👋 Welcome! I'm VPI AI.
+Feel free to share anything — I'm here to help you. 😊
+      </div>
+    </div>
+
+
+
+    <!-- INPUT -->
+    <div class="chat-input">
+      <input 
+        type="text" 
+        id="userInput" 
+        placeholder="Type your message..." 
+        autocomplete="off"
+      >
+      <button onclick="sendMsg()">➤</button>
+    </div>
+
+  </div>
+
+</div>

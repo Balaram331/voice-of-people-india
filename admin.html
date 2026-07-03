@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="admin-page">
+
+<h1>Admin Panel</h1>
+
+<button onclick="logout()">Logout</button>
+
+<div id="pending"></div>
+
+<!--  FIREBASE SCRIPTS -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+<script>
+//  CONFIG (INDEX.HTML THEKE COPY KORBI)
+const firebaseConfig = {
+  apiKey: "AIzaSyB1oBP-i4iNccXk_pfx5z6vLhE11muHhC8",
+  authDomain: "voice-of-people-india.firebaseapp.com",
+  projectId: "voice-of-people-india"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+
+// 🔐 AUTH PROTECTION
+firebase.auth().onAuthStateChanged(user=>{
+
+  if(user){
+    console.log("Admin logged in");
+
+    //  LOAD DATA ONLY AFTER LOGIN
+    loadPendingPosts();
+
+  } else {
+    window.location.href = "login.html";
+  }
+
+});
+
+
+//  LOGOUT
+function logout(){
+  firebase.auth().signOut().then(()=>{
+    window.location.href = "login.html";
+  });
+}
+
+
+//  LOAD PENDING POSTS
+function loadPendingPosts(){
+
+  const container = document.getElementById("pending");
+
+  db.collection("pendingPosts")
+  .onSnapshot(snapshot=>{
+
+    if(snapshot.empty){
+      container.innerHTML = "<p>No pending posts</p>";
+      return;
+    }
+
+    container.innerHTML = "";
+
+    snapshot.forEach(doc=>{
+
+      let post = doc.data();
+
+      container.innerHTML += `
+  <div class="card">
+    <div class="name">${post.name} (${post.city})</div>
+
+    <div class="problem">
+      ${post.problem.replace(/</g,"&lt;")}
+    </div>
+
+    <div class="actions">
+      <button class="btn edit" onclick="editPost('${doc.id}', \`${post.problem}\`)">✏️ Edit</button>
+      <button class="btn approve" onclick="approve('${doc.id}')">✅ Approve</button>
+      <button class="btn delete" onclick="deletePost('${doc.id}')">❌ Delete</button>
+    </div>
+  </div>
+`;
+    });
+
+  });
+
+}
+
+
+// EDIT
+let currentEditId = null;
+
+function editPost(id, text){
+  currentEditId = id;
+  document.getElementById("editInput").value = text;
+  document.getElementById("editModal").style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("editModal").style.display = "none";
+}
+
+function saveEdit(){
+
+  let newText = document.getElementById("editInput").value;
+
+  if(!newText) return;
+
+  db.collection("pendingPosts").doc(currentEditId).update({
+    problem: newText
+  });
+
+  closeModal();
+}
+
+
+// APPROVE
+function approve(id){
+
+  let ref = db.collection("pendingPosts").doc(id);
+
+  ref.get().then(doc=>{
+
+    let data = doc.data();
+
+  db.collection("approvedPosts").add({
+  ...data,
+  createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+  likes: 0,
+  supports: 0,
+  likedBy: {},
+  supportedBy: {}
+});
+    ref.delete();
+
+  });
+
+}
+
+
+// DELETE
+function deletePost(id){
+  db.collection("pendingPosts").doc(id).delete();
+}
+
+</script>
+
+<!--  CUSTOM EDIT MODAL -->
+<div id="editModal" class="modal">
+  <div class="modal-box">
+    <h3>Edit Post</h3>
+    
+    <textarea id="editInput"></textarea>
+
+    <div class="modal-actions">
+      <button onclick="saveEdit()">Save</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

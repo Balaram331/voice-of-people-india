@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Election</title>
+<link rel="icon" type="image/png" href="logo (2).png">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- PROFILE -->
+<div id="profileBox" class="profile">
+
+  <h2>Create Profile</h2>
+
+  <input id="name" placeholder="Name">
+  <select id="gender">
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+
+  <button onclick="saveProfile()">Start</button>
+
+</div>
+
+<!-- MAIN -->
+<div id="main" class="hidden">
+
+  <div class="top">
+  <h3 id="userName" class="user-name"></h3>
+  <button class="team-btn" onclick="goTeam()">Teams</button>
+</div>
+
+  <div class="vote-section">
+    <h2>Live Vote 🔥</h2>
+    <div id="voteCard"></div>
+  </div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="firebase.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

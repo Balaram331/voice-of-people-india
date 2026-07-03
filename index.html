@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice of People India</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PK6XN09BB5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PK6XN09BB5');
+</script>
+<link rel="icon" type="image/jpg" href="images/logo.jpg">
+
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <img src="images/logo.jpg" alt="Voice of People India Logo">
+    <span>Voice of People <span class="gradient">India</span></span>
+  </div>
+
+  <nav id="nav">
+    <a href="#home">Home</a>
+    <a href="services.html" class="premium-link">
+  Analytics Service
+</a>
+    <a href="#OurMission">Our Mission</a>
+    <a href="#issues">Issues</a>
+    <a href="#contact">Contact</a>
+    <a href="javascript:void(0)" onclick="openForm()">Join Us</a>
+    <button id="themeToggle">🌙</button>
+  </nav>
+
+  <div class="menu" onclick="toggleMenu()">☰</div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+   <h1>Your Voice Can <span class="gradient">Start Something.</span></h1>
+   <p class="subtext">One post can spark a thousand reactions.</p>
+   <a href="javascript:void(0)" onclick="openVoiceForm()" class="btn btn-main">
+  Speak Up in 5 sec ✨
+</a>
+
+<a href="#about" class="btn btn-dark">
+  Learn More
+</a>
+  </div>
+</section>
+
+<!-- CARDS -->
+<section class="section">
+  <div class="cards">
+
+    <div class="card">
+      <img src="images/chat (2).jpg">
+      <div class="card-content">
+        <h3>Join Live Chat</h3>
+        <p>Discuss your issues with people across India</p>
+        <a href="https://funny-lolly-077934.netlify.app/" target="_blank" class="btn btn-main">
+  Join Chat
+</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/submit (2).jpg">
+      <div class="card-content">
+        <h3>What's on your mind? </h3>
+        <p>Share your problem, idea, or suggestion</p>
+        <a href="javascript:void(0)" onclick="openVoiceForm()" class="btn btn-dark">
+  Post Now 
+</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/gamehub.jpg">
+      <div class="card-content">
+        <h3>Game Hub</h3>
+        <p>Sharpen your brain & become the next PM</p>
+       <a href="games/games.html">
+  <a href="games/games.html" class="btn btn-main">
+  Enter Game
+</a>
+</a>
+</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+  <section class="voices-section">
+
+  <h2 class="voices-title"> Recent Voices</h2>
+
+<div class="voices-layout">
+
+  <!-- LEFT SIDE POSTS -->
+  <div class="voices-left" id="posts"></div>
+
+  <!-- RIGHT SIDE TRENDING -->
+  <div class="voices-right">
+    <h3>🔥 Trending Issue</h3>
+
+    <div id="trendingBox" class="trending-box trending">
+      <p><b>Overcrowded Government Hospitals and Lack of Medical Staff:</b> Government hospitals in many parts of India, especially in states like Bihar, are heavily overcrowded and understaffed. Patients often have to wait for hours or even days to receive basic treatment. The shortage of doctors, nurses, and proper medical equipment creates serious challenges, particularly for low-income families who depend entirely on public healthcare. This leads to delayed treatment, poor patient care, and increased health risks.</p>
+      
+    </div>
+
+    <!--  ADD HERE (JUST BELOW TRENDING BOX) -->
+    <div class="info-box">
+      <h3>📢 How This Platform Works</h3>
+
+<P>
+
+To share your issue, click on the “Submit Your Voice” button on the homepage and fill out the form with your name, state, city, and your problem.
+
+Once you submit it, we take a quick look and then publish it in the <b>Recent Voices</b> section so others can see it.
+
+Anyone can raise their voice here — there are no complicated steps or barriers.
+
+If people relate to your issue, they can show support by liking ❤️ or supporting ⭐ it.
+
+Issues that receive more support automatically move to the <b>Trending</b> section so that more people can see them.
+
+You can also read other people’s issues and support them if you feel the same.
+<P>
+    
+    </div>
+
+  </div>
+
+</div>
+
+
+
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <h2 class="big-text">About <span class="gradient">Voice Platform</span></h2>
+  <p>This platform is built to give every citizen a voice. In today’s India, many real problems go unheard. Voice of People India aims to connect people, highlight real issues, and create awareness that leads to real change.</p>
+
+  <div class="cards">
+    <div class="card"><div class="card-content"><h3>Speak Freely</h3><p>Share your thoughts, opinions, and problems without fear. This platform ensures that every voice is heard, no matter where you come from. Your voice matters.</p></div></div>
+    <div class="card"><div class="card-content"><h3>Share Ideas</h3><p>Got an idea to improve society? Share your suggestions and solutions. Your ideas can inspire change and help build a better future for everyone.</p></div></div>
+    <div class="card"><div class="card-content"><h3>Drive Change</h3><p>Be part of something bigger. Your voice can influence decisions, raise awareness, and create real impact across communities and the nation.</p></div></div>
+  </div>
+</section>
+
+<!-- ISSUES -->
+<section class="section" id="issues">
+  <h2 class="big-text">Common <span class="gradient">Issues</span></h2>
+
+  <div class="cards">
+    <div class="card"><div class="card-content"><h3>Unemployment</h3><p>Millions of young people struggle to find jobs despite having education and skills. Lack of opportunities, low wages, and job insecurity are major concerns affecting the future of youth.</p></div></div>
+    <div class="card"><div class="card-content"><h3>Healthcare</h3><p>Access to affordable and quality healthcare remains a challenge. Many people face issues like expensive treatments, lack of hospitals, and poor medical facilities in rural areas.</p></div></div>
+    <div class="card"><div class="card-content"><h3>Education</h3><p>Quality education is still not accessible to everyone. Many students face problems like outdated systems, lack of resources, and inequality between urban and rural education.</p></div></div>
+    <div class="card"><div class="card-content"><h3>Infrastructure</h3><p>Basic infrastructure like roads, transport, electricity, and sanitation is still underdeveloped in many areas, affecting daily life and economic growth.</p></div></div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+
+<section class="numbers">
+
+  <h2 class="numbers-title">AITTS by the Numbers</h2>
+
+  <div class="numbers-grid">
+
+    <div class="num-box">
+      <h1>1.9K+</h1>
+      <p>Followers</p>
+    </div>
+
+    <div class="num-box">
+      <h1>200+</h1>
+      <p>Active Members</p>
+    </div>
+
+    <div class="num-box">
+      <h1>500+</h1>
+      <p>Voices Raised</p>
+    </div>
+
+    <div class="num-box">
+      <h1>50+</h1>
+      <p>Issues Highlighted</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- STORY DETAILS -->
+<section class="section" id="OurMission">
+  <h2 class="big-text">Our <span class="gradient">Mission</span></h2>
+
+  <div class="story-box">
+
+    <h3 class="story-highlight">About AITTS</h3>
+
+<p>
+AITTS stands for <b>All India The Truth Speaker</b> — a vision-driven initiative built to bring real voices of people into the spotlight.
+</p>
+
+<p>
+In a country where millions of people face daily struggles, many voices remain unheard. AITTS was created to change that by giving every individual a space to speak openly about real issues without fear.
+</p>
+
+<p>
+It is not just a name — it represents a movement where truth matters, voices unite, and real problems are highlighted for awareness and change.
+</p>
+
+<p>
+Through this platform, AITTS aims to connect people, amplify their concerns, and turn individual voices into a powerful collective impact.
+</p>
+</section>
+<!-- CONTACT -->
+<section class="contact" id="contact">
+
+  <h2 class="section-title">Get in <span>Touch</span></h2>
+  <p class="contact-sub">Connect with us and stay updated</p>
+
+  <div class="contact-buttons">
+    <a href="https://www.facebook.com/AITTS.YOUTH" target="_blank" class="btn facebook">Facebook</a>
+    <a href="https://www.instagram.com/_____ishan.in_____/" target="_blank" class="btn insta">Instagram</a>
+    <a href="https://whatsapp.com/channel/0029Vb7ScEd0gcfMKBsyj60D" target="_blank" class="btn whatsapp">WhatsApp</a>
+  </div>
+
+</section>
+
+<!--ai chat button-->
+
+
+<div id="ai-container"></div>
+
+<script>
+fetch("ai-component.html")
+.then(res => res.text())
+.then(data => {
+  document.getElementById("ai-container").innerHTML = data;
+});
+</script>
+
+<footer>
+  © 2026 Voice of People India | AITTS
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("nav").classList.toggle("show");
+}
+function openForm(){
+  document.getElementById("joinForm").style.display = "flex";
+  document.body.style.overflow = "hidden";
+}
+
+function closeForm(){
+  document.getElementById("joinForm").style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+// global access
+window.openForm = openForm;
+
+function openVoiceForm(){
+  document.getElementById("voiceForm").style.display = "flex";
+  document.body.style.overflow = "hidden";
+}
+
+function closeVoiceForm(){
+  document.getElementById("voiceForm").style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+window.openVoiceForm = openVoiceForm;
+
+/* click outside close */
+window.onclick = function(e){
+  let form = document.getElementById("joinForm");
+  if(e.target === form){
+    closeForm();
+  }
+}
+
+/* ESC close */
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape"){
+    closeForm();
+  }
+});
+</script>
+<div id="joinForm" class="full-form">
+
+  <!-- CLOSE BUTTON -->
+  <button class="btn btn-dark close-btn" onclick="closeForm()">✕</button>
+
+  <div class="form-container">
+
+    <h1>Join Our Community</h1>
+    <p>Fill out the form below and we'll get back to you.</p>
+
+    <input type="text" id="joinName" name="joinName" placeholder="Your Name *" required>
+    <input type="email" id="joinEmail" name="joinEmail" placeholder="Your Email *" required>
+    <input type="text" id="joinCity" name="joinCity" placeholder="Your City *" required>
+    <textarea id="joinReason" name="joinReason" placeholder="Why do you want to join our community? *" required></textarea>
+
+
+    <button class="btn btn-main" onclick="submitJoin()">Submit</button>
+
+  </div>
+
+</div>
+<script>
+
+
+
+
+
+
+
+
+
+
+</script>
+<div id="voiceForm" class="full-form">
+
+  <!-- CLOSE -->
+  <button class="btn btn-dark close-btn" onclick="closeVoiceForm()">✕</button>
+
+  <div class="form-container">
+
+    <h1>Raise Your Voice</h1>
+    <p>Share your issue. We will review before publishing.</p>
+
+    <!-- NAME -->
+    <input type="text" id="name" name="name" placeholder="Your Name *" required>
+
+    <!-- STATE -->
+    <input type="text" id="state" name="state" placeholder="Your State *" required>
+
+    <!-- CITY -->
+    <input type="text" id="city" name="city" placeholder="Your City *" required>
+
+    <!-- PINCODE -->
+    <input type="text" id="pincode" name="pincode" placeholder="Pincode (optional)">
+
+    <!-- PROBLEM -->
+    <textarea id="problem" placeholder="Describe your problem *" required></textarea>
+
+    <!-- SUGGESTION -->
+    <textarea id="suggestion" placeholder="Any suggestion (optional)"></textarea>
+
+    <!-- SUBMIT -->
+    <button class="btn btn-main" onclick="submitVoice()">Submit</button>
+
+  </div>
+
+</div>
+<script>
+  /// VOICE FORM LOGIC DATA
+  function submitJoin(){
+
+  let name = document.getElementById("joinName").value.trim();
+  let email = document.getElementById("joinEmail").value.trim();
+  let city = document.getElementById("joinCity").value.trim();
+  let reason = document.getElementById("joinReason").value.trim();
+
+  if(!name || !email || !city || !reason){
+    alert("Please fill all required fields");
+    return;
+  }
+
+  db.collection("joinRequests").add({
+    name,
+    email,
+    city,
+    reason,
+    createdAt: new Date()
+  })
+  .then(() => {
+    showAlert("Your join request has been sent successfully. Our team will contact you soon.");
+    closeForm();
+  })
+  .catch((err) => {
+    console.error(err);
+    alert("Error saving data");
+  });
+}
+
+function submitVoice(){
+
+  let name = document.getElementById("name").value;
+  let state = document.getElementById("state").value;
+  let city = document.getElementById("city").value;
+  let problem = document.getElementById("problem").value;
+
+  if(!name || !state || !city || !problem){
+    alert("Fill all fields");
+    return;
+  }
+
+  db.collection("pendingPosts").add({
+    name,
+    state,
+    city,
+    problem,
+    createdAt: new Date()
+  })
+  .then(() => {
+    showAlert("Submitted! Waiting for review.");
+    closeVoiceForm();
+  })
+  .catch((err) => {
+    console.error(err);
+    alert("Error saving data");
+  });
+}
+
+</script>
+
+<script>
+
+function openTrendingPopup(){
+  document.getElementById("trendingPopup").style.display = "flex";
+}
+
+function closeTrendingPopup(){
+  document.getElementById("trendingPopup").style.display = "none";
+}
+
+</script>
+<script>
+
+window.addEventListener("click", function(e){
+  let popup = document.getElementById("trendingPopup");
+
+  if(e.target === popup){
+    popup.style.display = "none";
+  }
+});
+
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyB1oBP-i4iNccXk_pfx5z6vLhE11muHhC8",
+    authDomain: "voice-of-people-india.firebaseapp.com",
+    projectId: "voice-of-people-india",
+    storageBucket: "voice-of-people-india.firebasestorage.app",
+    messagingSenderId: "664755774383",
+    appId: "1:664755774383:web:fcf3653b3d09a7c0aa455a",
+    measurementId: "G-PK6XN09BB5"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const analytics = firebase.analytics();
+  window.db = db; // 
+</script>
+
+<script src="ai-data.js"></script>
+<script src="ai.js"></script>
+
+
+
+<div id="customAlert" class="alert-box">
+  <div class="alert-content">
+    <p id="alertMsg"></p>
+    <button onclick="closeAlert()">OK</button>
+  </div>
+</div>
+
+<script>
+  function showAlert(msg){
+  document.getElementById("alertMsg").innerText = msg;
+  document.getElementById("customAlert").style.display = "flex";
+}
+
+function closeAlert(){
+  document.getElementById("customAlert").style.display = "none";
+}
+
+
+
+const toggleBtn = document.getElementById("themeToggle");
+
+//  APPLY DEFAULT DARK OR SAVED THEME
+if(localStorage.getItem("theme") === "light"){
+  document.body.classList.remove("dark");
+  toggleBtn.innerText = "🌙";
+} else {
+  document.body.classList.add("dark"); // default dark
+  toggleBtn.innerText = "☀️";
+}
+
+//  TOGGLE
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  if(document.body.classList.contains("dark")){
+    toggleBtn.innerText = "☀️";
+    localStorage.setItem("theme","dark");
+  } else {
+    toggleBtn.innerText = "🌙";
+    localStorage.setItem("theme","light");
+  }
+});
+</script>
+</script>
+</body>
+</html>
